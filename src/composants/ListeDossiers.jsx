@@ -30,14 +30,24 @@ export default function ListeDossiers({utilisateur, etatDossiers}) {
       chercherDossiers();
     }, []
   );
-
-  return (
-    <ul className="ListeDossiers">
-      {
-        dossiers.map( 
-          dossier =>  <li key={dossier.id}><Dossier {...dossier} /></li>
-        )
-      }
-    </ul>
-  );
+  if (dossiers.length) {
+    return (
+      <ul className="ListeDossiers">
+        {
+          dossiers.map( 
+            dossier =>  <li key={dossier.id}><Dossier {...dossier} /></li>
+          )
+        }
+      </ul>
+    );
+  } else {
+    return (
+      <div className="ListeDossierVide">
+        <div className="texte">
+          <h2>Votre liste de dossiers est vide</h2>
+          <h1>;-(</h1>
+        </div>
+      </div>
+    )
+  }
 }
